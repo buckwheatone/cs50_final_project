@@ -16,3 +16,5 @@ class RegistrationForm(FlaskForm):
                              max=200,
                          )])
     submit = SubmitField("Submit") 
+
+    # add username and e-mail uniqueness validations here
