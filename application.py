@@ -7,15 +7,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 cards = [
     {
         'title': 'Card 1',
-        'question': 'What is 2+2?',
         'tags': 'Programming',
-        'answer': '4'
-    },
-        {
-        'title': 'Card 2',
-        'question': 'Define strategy.',
-        'tags': 'Business',
-        'answer': 'Great question!'
+        'question': 'What does import this do in the Python REPL?',
+        'answer': 'Prints out the Zen of Python'
     }
 ]
 
