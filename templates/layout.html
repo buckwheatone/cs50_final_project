@@ -12,32 +12,30 @@
         <link href="/static/styles.css" rel="stylesheet">
         <link href="/static/favicon.ico" rel="icon">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato" rel="stylesheet">
+        
         <title>CS50 FP: {% block title %}{% endblock %}</title>
     </head>
 
     <body>
         <nav class="navbar navbar-expand-md navbar-light bg-light border">
-            <a class="navbar-brand" href="/"><span class="red">Spaced Rep</span></a>
+            <a class="nav-link navbar-brand" href="/"><span style="color: red">Spaced Rep</span></a>
             <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar">
                 {% if session.user_id %}
                     <ul class="navbar-nav mr-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/subjects">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/pricing">Pricing</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/FAQ">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/MyAccount">My Account</a></li>
                     </ul>
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/settings"><span class="material-icons">
-                            settings
-                            </span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/signout">Sign Out</a></li>
                     </ul>
                 {% else %}
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/signin">Sign In</a></li>
                     </ul>
                 {% endif %}
             </div>

@@ -3,6 +3,22 @@ from flask_session import Session
 from forms import RegistrationForm
 from werkzeug.security import check_password_hash, generate_password_hash
 
+# remove later
+cards = [
+    {
+        'title': 'Card 1',
+        'question': 'What is 2+2?',
+        'tags': 'Programming',
+        'answer': '4'
+    },
+        {
+        'title': 'Card 2',
+        'question': 'Define strategy.',
+        'tags': 'Business',
+        'answer': 'Great question!'
+    }
+]
+
 app = Flask(__name__)
 app.config.from_mapping(
     SECRET_KEY='This is my secret key!')
@@ -11,8 +27,8 @@ app.config.from_mapping(
 def index():
     return render_template("index.html") 
 
-@app.route("/register", methods=["GET", "POST"]) 
-def register():
+@app.route("/signup", methods=["GET", "POST"]) 
+def signup():
     form = RegistrationForm()
     if request.method == 'POST' and form.validate():
         username = form.username.data
@@ -25,9 +41,9 @@ def register():
         #     generate_password_hash(request.form.get("password"))
         #     )
         return redirect("/login")
-    return render_template("register.html", form=form) 
+    return render_template("signup.html", form=form) 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/signin", methods=["GET", "POST"])
 def login():
     # need to validate: only username and password match
     
@@ -41,11 +57,11 @@ def login():
         session["user_id"] = rows[0]["id"]
         return redirect("/dashboard") 
     
-    return render_template("login.html") 
+    return render_template("signin.html") 
 
 @app.route("/dashboard")
 def dashboard():
-    return "here's your dashboard!"
+    return render_template("dashboard.html", cards=cards)
 
 
 if __name__ == '__main__':

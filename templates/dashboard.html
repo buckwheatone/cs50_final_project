@@ -1,7 +1,16 @@
-{% extends "layout.html"} 
+{% extends "layout.html" %} 
 
-{% block body %} 
+{% block title %} Dashboard {% endblock %} 
+
+{% block main %} 
 
     <h1>Dashboard</h1>
- 
+    <ul>
+    {% for card in cards %} 
+        <h2>{{ card.title }}</h2>
+        <li>{{ card.question }}</li> 
+        <li>{{ card.tags }}</li>   
+    {% endfor %} 
+    </ul>
+
 {% endblock %} 
