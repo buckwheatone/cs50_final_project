@@ -5,3 +5,16 @@ body {
 .badge-pill {
     background-color: black;
 }
+
+.btn-primary, .btn-outline-primary {
+    background-color: #2066b4;
+    border-color: #2066b4;
+    color: white; 
+}
+
+
+.btn-primary:hover, .btn-outline-primary:hover {
+    background-color: #0ca3e0;
+    border-color: #0ca3e0;
+    color: white; 
+}

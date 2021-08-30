@@ -1,2 +1,5 @@
 __pycache__/
 .DS_Store
+static/spacer\ logo.png
+static/spacer.svg
+templates/test.html

@@ -14,7 +14,10 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Lato" rel="stylesheet">
         
+        <link href="/static/styles.css" rel="stylesheet">
+
         <title>CS50 FP: {% block title %}{% endblock %}</title>
+
     </head>
 
     <body>
@@ -35,12 +38,12 @@
                   </li>
                 </ul>
                 <div class="d-flex">
-                    <li class="nav-item"><a class="nav-link" href="/signout">Sign Out</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Sign Out</a></li>
                 </div>
                 {% else %}
                 <div class="d-flex">
-                  <a href="/signup"><button class="btn btn-secondary" type="Sign Up">Sign Up</button></a>
-                  <a href="/signin"><button class="btn btn-outline-secondary" type="submit">Sign In</button></a>
+                  <a href="/register"><button class="btn btn-primary" type="submit">Register</button></a>
+                  <a href="/login"><button class="btn btn-outline-primary" type="submit">Sign In</button></a>
                 </div>
                 {% endif %} 
               </div>
