@@ -6,12 +6,18 @@ body {
     background-color: black;
 }
 
-.btn-primary, .btn-outline-primary {
+.btn-primary {
     background-color: #2066b4;
     border-color: #2066b4;
     color: white; 
+    margin-right: 10px;
 }
 
+.btn-outline-primary {
+    background-color: white;
+    border-color: #2066b4;
+    color: #2066b4;
+}
 
 .btn-primary:hover, .btn-outline-primary:hover {
     background-color: #0ca3e0;

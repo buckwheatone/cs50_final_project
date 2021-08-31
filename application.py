@@ -61,8 +61,15 @@ def forgot_password():
 
 @app.route("/test") 
 def test():
-    form = LoginForm() 
+    form = RegistrationForm() 
     return render_template("test.html", form=form)
+
+@app.route("/test2") 
+def test2():
+    form = LoginForm() 
+    return render_template("test2.html", form=form)
+
+
 
 
 if __name__ == '__main__':

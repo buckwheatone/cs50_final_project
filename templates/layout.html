@@ -13,17 +13,19 @@
         <link href="/static/favicon.ico" rel="icon">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Lato" rel="stylesheet">
-        
         <link href="/static/styles.css" rel="stylesheet">
-
+        
+        {% block add_head %} {% endblock add_head %} 
         <title>CS50 FP: {% block title %}{% endblock %}</title>
 
     </head>
 
+    {% block body %}
     <body>
+        {% block nav %}
         <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
             <div class="container-fluid">
-              <a class="navbar-brand" href="/"><span style="color:rgb(38, 22, 109)">Spaced Rep</span></a>
+              <a class="navbar-brand" href="/"><span style="color:rgb(38, 22, 109)">SpaceR</span></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -43,12 +45,13 @@
                 {% else %}
                 <div class="d-flex">
                   <a href="/register"><button class="btn btn-primary" type="submit">Register</button></a>
-                  <a href="/login"><button class="btn btn-outline-primary" type="submit">Sign In</button></a>
+                  <a href="/login"><button class="btn btn-outline-primary" type="submit">Log In</button></a>
                 </div>
                 {% endif %} 
               </div>
             </div>
           </nav>
+          {% endblock nav %} 
         <!-- 
                 {% if session.user_id %}
                     <ul class="navbar-nav mr-auto mt-2">
@@ -74,9 +77,9 @@
             </header>
         {% endif %}
 
-        <main class="container p-2">
+       
             {% block main %}{% endblock %}
-        </main>
+       
 
         <footer class="small text-center text-muted">
             Created by <a href="https://twitter.com/buckwheatone">BuckwheatOne</a> for my <a href="https://cs50.harvard.edu/">CS50 Final Project</a>.
@@ -87,5 +90,5 @@
             crossorigin="anonymous">
         </script>
     </body>
-
+    {% endblock body %} 
 </html>
