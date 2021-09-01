@@ -69,17 +69,17 @@
                 {% endif %}
         -->
 
+        <!-- TODO: Need to add conditional for type of message, customize alert -->
         {% if get_flashed_messages() %}
             <header>
-                <div class="alert alert-primary border text-center" role="alert">
-                    {{ get_flashed_messages() | join(" ") }}
+                <div class="alert alert-success alert-dismissable fade show" role="alert">
+                    <strong>{{ get_flashed_messages() | join(" ") }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </header>
         {% endif %}
 
-       
-            {% block main %}{% endblock %}
-       
+        {% block main %}{% endblock %}
 
         <footer class="small text-center text-muted">
             Created by <a href="https://twitter.com/buckwheatone">BuckwheatOne</a> for my <a href="https://cs50.harvard.edu/">CS50 Final Project</a>.
