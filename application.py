@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from forms import RegistrationForm, LoginForm
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -23,27 +23,22 @@ def index():
 @app.route("/register", methods=["GET", "POST"]) 
 def register():
     form = RegistrationForm()
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST' and form.validate_on_submit():
         username = form.username.data
         password = generate_password_hash(form.password.data) 
-
+        flash(f"Account created for {username}!", category="success")
+        
         # TODO ensure username isn't taken
 
-        # db.execute("INSERT INTO users (username, hash) VALUES(?, ?)",
-        #     request.form.get("username"),
-        #     generate_password_hash(request.form.get("password"))
-        #     )
-        return redirect("/login")
+        return redirect(url_for("dashboard")) 
     return render_template("register.html", form=form) 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    # need to validate: only username and password match
-    
     # Forget any user_id
     # session.clear()
     form = LoginForm() 
-    if request.method == 'POST': #and form.validate():
+    if request.method == 'POST' and form.validate_on_submit():
         # look up username and password in db
         # Remember which user has logged in
         # session["user_id"] = rows[0]["id"]
@@ -59,12 +54,14 @@ def dashboard():
 def forgot_password():
     pass
 
-@app.route("/test") 
+@app.route("/test", methods=['GET', 'POST']) 
 def test():
     form = RegistrationForm() 
+    if request.method == 'POST' and form.validate_on_submit():
+        return redirect("/dashboard") 
     return render_template("test.html", form=form)
 
-@app.route("/test2") 
+@app.route("/test2", methods=['GET', 'POST']) 
 def test2():
     form = LoginForm() 
     return render_template("test2.html", form=form)
