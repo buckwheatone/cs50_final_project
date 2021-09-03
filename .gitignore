@@ -3,6 +3,7 @@ __pycache__/
 application/static/spacer\ logo.png
 application/static/spacer.svg
 application/static/testsignin.css
+application/templates/test_layout.html
 application/templates/test.html
 application/templates/test2.html
-
+application/site.db

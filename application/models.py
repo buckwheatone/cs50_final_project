@@ -7,6 +7,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False) 
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(), nullable=False) 
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     cards = db.relationship('Card', backref='author', lazy=True)
 
     def __repr__(self): 

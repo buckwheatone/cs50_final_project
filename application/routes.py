@@ -1,5 +1,5 @@
 from flask import flash, redirect, render_template, request, session, url_for
-from application import app
+from application import app, db
 from .forms import LoginForm, RegistrationForm
 from .models import User, Card
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -14,36 +14,6 @@ cards = [
     }
 ]
 
-@app.route("/")
-def index():
-    return render_template("index.html") 
-
-@app.route("/register", methods=["GET", "POST"]) 
-def register():
-    form = RegistrationForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        username = form.username.data
-        password = generate_password_hash(form.password.data) 
-        flash(f"Account created for {username}!", category="success")
-        
-        # TODO ensure username isn't taken
-
-        return redirect(url_for("dashboard")) 
-    return render_template("register.html", form=form) 
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    # Forget any user_id
-    # session.clear()
-    form = LoginForm() 
-    if request.method == 'POST' and form.validate_on_submit():
-        # look up username and password in db
-        # Remember which user has logged in
-        # session["user_id"] = rows[0]["id"]
-        return redirect("/dashboard") 
-    
-    return render_template("login.html", form=form) 
-
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html", cards=cards)
@@ -51,6 +21,43 @@ def dashboard():
 @app.route("/forgotpassword")
 def forgot_password():
     pass
+
+@app.route("/")
+def index():
+    return render_template("index.html") 
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    # TODO: Forget any user_id, session.clear()
+    form = LoginForm() 
+    if request.method == 'POST' and form.validate_on_submit():
+        # TODO: session data, checking username availability
+        hashed_pass = generate_password_hash(form.password.data)
+        user = User.query.filter_by(email=form.email.data).first()
+        if check_password_hash(hashed_pass, form.password.data): 
+            flash("Logged in!", category='success') 
+            return redirect("/dashboard") 
+        else:
+            flash("Username and password incorrect", category='danger') 
+    
+    return render_template("login.html", form=form) 
+
+@app.route("/register", methods=["GET", "POST"]) 
+def register():
+    form = RegistrationForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        # TODO ensure username isn't taken
+        
+        hashed_pass = generate_password_hash(form.password.data)
+        user = User(username=form.username.data, email=form.email.data, 
+                    password=hashed_pass)
+        db.session.add(user) 
+        db.session.commit() 
+        flash(f"Account created for {form.username.data}!", category="success")
+        
+
+        return redirect(url_for("dashboard")) 
+    return render_template("register.html", form=form) 
 
 @app.route("/test", methods=['GET', 'POST']) 
 def test():
