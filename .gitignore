@@ -1,8 +1,8 @@
 __pycache__/
 .DS_Store
-static/spacer\ logo.png
-static/spacer.svg
-static/testsignin.css
-templates/test.html
-templates/test2.html
+application/static/spacer\ logo.png
+application/static/spacer.svg
+application/static/testsignin.css
+application/templates/test.html
+application/templates/test2.html
 
