@@ -18,9 +18,9 @@ schedule for reviewing information that allows for much longer retention.  This 
 helps with that.
 
 ## Usage
-The application is pre-populated with questions from several fields so users can 
-start learning right out of the gate.  However, you can add your own spaced repetition
-cards to tailor the experience to what you'd like to learn.  
+The application is pre-populated with questions from my CS50 course learning.  
+However, you can add your own spaced repetition cards to tailor the experience 
+to what you'd like to learn.  
 
 ## Why another system? 
 There are other solutions out there.  Anki is a popular one, and open source.  But in
