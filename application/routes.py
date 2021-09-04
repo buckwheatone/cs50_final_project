@@ -34,6 +34,7 @@ def login():
         # TODO: session data, checking username availability
         hashed_pass = generate_password_hash(form.password.data)
         user = User.query.filter_by(email=form.email.data).first()
+        print(user)
         if check_password_hash(hashed_pass, form.password.data): 
             flash("Logged in!", category='success') 
             return redirect("/dashboard") 

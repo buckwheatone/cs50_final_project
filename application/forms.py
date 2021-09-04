@@ -5,25 +5,26 @@ from wtforms.validators import DataRequired, Email, EqualTo, length
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired(), length(min=8, max=200)]) 
+    password = PasswordField('Password', validators=[
+                             DataRequired(),
+                             length(min=8, max=200, message="Reminder: password must be at least 8 characters."), 
+                             ])
     remember = BooleanField("Remember me")
     submit = SubmitField("Log in") 
 
 class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    username = StringField('Username', 
-                           validators=[DataRequired(), length(min=3, max=20)])
-    password = PasswordField('Password', validators=[DataRequired(), length(min=8, max=200)]) 
+    username = StringField('Username', validators=[DataRequired(), length(min=3, max=20, message="Username must be at least 3 characters")])
+    password = PasswordField('Password', validators=[DataRequired(), length(min=8, max=200, message="Password must be at least 8 characters")]) 
     submit = SubmitField("Sign Up") 
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
-
         if user:
-            raise ValidationError("Username already taken.  Please choose another username. ")
+            print(user)
+            raise ValidationError("Username already taken.")
 
     def validate_email(self, email):
         email = User.query.filter_by(email=email.data).first()
-
         if email:
             raise ValidationError("Email already in use.")

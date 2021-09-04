@@ -31,15 +31,42 @@
     <h1 class="h3 mb-3 fw-normal">Create your account</h1>
 
     <div class="form-floating">
-      {{ form.email(class="form-control", id="floatingInput", placeholder="name@example.com") }} 
+      {% if form.email.errors %} 
+        {{ form.email(class="form-control is-invalid", placeholder="name@example.com") }}
+        {% for error in form.email.errors %} 
+          <div class="invalid-feedback">
+            <span>{{ error }}</span>
+          </div>
+        {% endfor %} 
+      {% else %} 
+        {{ form.email(class="form-control", id="floatingInput", placeholder="name@example.com") }} 
+      {% endif %} 
       {{ form.email.label(for="floatingInput") }}
     </div>
     <div class="form-floating">
-      {{ form.username(class="form-control", id="floatingInput", placeholder="Username") }} 
+      {% if form.username.errors %} 
+        {{ form.username(class="form-control is-invalid", placeholder="Username") }}
+        {% for error in form.username.errors %} 
+          <div class="invalid-feedback">
+            <span>{{ error }}</span>
+          </div>
+        {% endfor %} 
+      {% else %} 
+        {{ form.username(class="form-control", id="floatingInput", placeholder="Username") }} 
+      {% endif %}
       {{ form.username.label(for="floatingInput") }}
     </div>
     <div class="form-floating">
-      {{ form.password(class="form-control", id="floatingPassword", placeholder="Password")}}
+      {% if form.password.errors %} 
+        {{ form.password(class="form-control is-invalid", placeholder="Password") }}
+        {% for error in form.password.errors %} 
+          <div class="invalid-feedback">
+            <span>{{ error }}</span>
+          </div>
+        {% endfor %} 
+      {% else %} 
+        {{ form.password(class="form-control", id="floatingPassword", placeholder="Password")}}
+      {% endif %} 
       {{ form.password.label(for="floatingInput") }}
     </div>
 
