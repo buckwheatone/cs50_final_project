@@ -1,7 +1,12 @@
 from flask_wtf import FlaskForm
+from application import login_manager
 from application.models import User
 from wtforms import BooleanField, PasswordField, StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Email, EqualTo, length
+
+@login_manager.user_loader 
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])

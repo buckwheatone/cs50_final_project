@@ -3,6 +3,7 @@ from application import app, db
 from .forms import LoginForm, RegistrationForm
 from .models import User, Card
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import login_user, logout_user, current_user
 
 # remove later
 cards = [
@@ -26,6 +27,7 @@ def forgot_password():
 def index():
     return render_template("index.html") 
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     # TODO: Forget any user_id, session.clear()
@@ -34,8 +36,8 @@ def login():
         # TODO: session data, checking username availability
         hashed_pass = generate_password_hash(form.password.data)
         user = User.query.filter_by(email=form.email.data).first()
-        print(user)
-        if check_password_hash(hashed_pass, form.password.data): 
+        if user and check_password_hash(hashed_pass, form.password.data): 
+            login_user(user, remember=form.remember.data) 
             flash("Logged in!", category='success') 
             return redirect("/dashboard") 
         else:
@@ -71,3 +73,8 @@ def test():
 def test2():
     form = LoginForm() 
     return render_template("test2.html", form=form)
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect("/login")
