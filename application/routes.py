@@ -1,9 +1,9 @@
 from flask import flash, redirect, render_template, request, session, url_for
 from application import app, db
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, UpdateAccountForm
 from .models import User, Card
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 
 # remove later
 cards = [
@@ -16,6 +16,7 @@ cards = [
 ]
 
 @app.route("/dashboard")
+@login_required
 def dashboard():
     return render_template("dashboard.html", cards=cards)
 
@@ -31,22 +32,52 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     # TODO: Forget any user_id, session.clear()
+    if current_user.is_authenticated: 
+        return redirect(url_for('dashboard'))
+
     form = LoginForm() 
+    print(request.url)
+    print(request.base_url)
+    print(request.query_string)
+    print(request.args)
     if request.method == 'POST' and form.validate_on_submit():
         # TODO: session data, checking username availability
         hashed_pass = generate_password_hash(form.password.data)
         user = User.query.filter_by(email=form.email.data).first()
         if user and check_password_hash(hashed_pass, form.password.data): 
-            login_user(user, remember=form.remember.data) 
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next') 
+            print(request.url)
+            print(request.base_url)
+            print(request.query_string)
+            print(request.args)
+            print(next_page)
             flash("Logged in!", category='success') 
-            return redirect("/dashboard") 
+            return redirect(next_page) if next_page else redirect(url_for('dashboard')) 
         else:
             flash("Username and password incorrect", category='danger') 
     
     return render_template("login.html", form=form) 
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect("/login")
+
+@app.route("/profile", methods=['GET', 'POST'])
+@login_required
+def profile():
+    form = UpdateAccountForm()
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file) 
+
+ 
+    return render_template("profile.html", image_file=image_file, form=form)
+ 
+
 @app.route("/register", methods=["GET", "POST"]) 
 def register():
+    if current_user.is_authenticated: 
+        return redirect(url_for('dashboard'))
     form = RegistrationForm()
     if request.method == 'POST' and form.validate_on_submit():
         # TODO ensure username isn't taken
@@ -59,7 +90,7 @@ def register():
         flash(f"Account created for {form.username.data}!", category="success")
         
 
-        return redirect(url_for("dashboard")) 
+        return redirect(url_for("login")) 
     return render_template("register.html", form=form) 
 
 @app.route("/test", methods=['GET', 'POST']) 
@@ -74,7 +105,3 @@ def test2():
     form = LoginForm() 
     return render_template("test2.html", form=form)
 
-@app.route("/logout")
-def logout():
-    logout_user()
-    return redirect("/login")

@@ -1,0 +1,43 @@
+{% extends "layout.html" %} 
+
+{% block main %} 
+    <img class="border border-5 border-light img-fluid rounded-pill" width="100px" src="{{ image_file }}">
+    <main class="form-signin">
+        <form method="POST" action="">
+          {{ form.hidden_tag() }}
+
+          <h1 class="h3 mb-3 fw-normal">Update account</h1>
+      
+          <div class="form-floating">
+            {% if form.email.errors %} 
+              {{ form.email(class="form-control is-invalid", placeholder="name@example.com") }}
+              {% for error in form.email.errors %} 
+                <div class="invalid-feedback">
+                  <span>{{ error }}</span>
+                </div>
+              {% endfor %} 
+            {% else %} 
+              {{ form.email(class="form-control", id="floatingInput", placeholder="name@example.com") }} 
+            {% endif %} 
+            {{ form.email.label(for="floatingInput") }}
+          </div>
+          <div class="form-floating">
+            {% if form.username.errors %} 
+              {{ form.username(class="form-control is-invalid", placeholder="Username") }}
+              {% for error in form.username.errors %} 
+                <div class="invalid-feedback">
+                  <span>{{ error }}</span>
+                </div>
+              {% endfor %} 
+            {% else %} 
+              {{ form.username(class="form-control", id="floatingInput", placeholder="Username") }} 
+            {% endif %}
+            {{ form.username.label(for="floatingInput") }}
+          </div>
+      
+          {{ form.submit(class="w-100 btn btn-lg btn-primary") }}
+      
+          <p class="mt-3 mb-3 text-muted">&copy; 2021</p>
+        </form>
+      </main>
+{% endblock main %} 

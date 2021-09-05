@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from application import login_manager
 from application.models import User
+from flask_login import current_user
 from wtforms import BooleanField, PasswordField, StringField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Email, EqualTo, length
 
@@ -33,3 +34,21 @@ class RegistrationForm(FlaskForm):
         email = User.query.filter_by(email=email.data).first()
         if email:
             raise ValidationError("Email already in use.")
+
+class UpdateAccountForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    username = StringField('Username', validators=[DataRequired(), length(min=3, max=20, message="Username must be at least 3 characters")])
+    submit = SubmitField("Update")
+
+    def validate_username(self, username):
+        if username.data != current_user.username:
+            user = User.query.filter_by(username=username.data).first()
+            if user:
+                print(user)
+                raise ValidationError("Username already taken.")
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            email = User.query.filter_by(email=email.data).first()
+            if email:
+                raise ValidationError("Email already in use.")
