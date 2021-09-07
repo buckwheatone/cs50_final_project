@@ -97,3 +97,11 @@ def test2():
     form = LoginForm() 
     return render_template("test2.html", form=form)
 
+@app.route("/test3")
+def test3():
+    return render_template("test3.html")
+
+@app.route("/test4")
+def test4():
+    return render_template("test4.html") 
+    

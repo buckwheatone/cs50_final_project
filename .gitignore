@@ -6,4 +6,5 @@ application/static/testsignin.css
 application/templates/test_layout.html
 application/templates/test.html
 application/templates/test2.html
+application/templates/test3.html
 application/site.db
