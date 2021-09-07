@@ -1,5 +1,5 @@
 email-validator
 flask
-flask-sesison
+flask-login
 flask-sqlalchemy
 flask-wtf

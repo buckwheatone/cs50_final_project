@@ -6,18 +6,19 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import login_user, logout_user, current_user, login_required
 
 # remove later
-cards = [
-    {
-        'title': 'Card 1',
-        'tags': 'Programming',
-        'question': 'What does import this do in the Python REPL?',
-        'answer': 'Prints out the Zen of Python'
-    }
-]
+# cards = [
+#     {
+#         'title': 'Card 1',
+#         'tags': 'Programming',
+#         'question': 'What does import this do in the Python REPL?',
+#         'answer': 'Prints out the Zen of Python'
+#     }
+# ]
 
 @app.route("/dashboard")
 @login_required
 def dashboard():
+    cards = Card.query.filter_by(user_id=current_user.id)
     return render_template("dashboard.html", cards=cards)
 
 @app.route("/forgotpassword")
@@ -36,10 +37,6 @@ def login():
         return redirect(url_for('dashboard'))
 
     form = LoginForm() 
-    print(request.url)
-    print(request.base_url)
-    print(request.query_string)
-    print(request.args)
     if request.method == 'POST' and form.validate_on_submit():
         # TODO: session data, checking username availability
         hashed_pass = generate_password_hash(form.password.data)
@@ -47,11 +44,6 @@ def login():
         if user and check_password_hash(hashed_pass, form.password.data): 
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next') 
-            print(request.url)
-            print(request.base_url)
-            print(request.query_string)
-            print(request.args)
-            print(next_page)
             flash("Logged in!", category='success') 
             return redirect(next_page) if next_page else redirect(url_for('dashboard')) 
         else:
