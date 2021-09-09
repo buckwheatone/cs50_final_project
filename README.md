@@ -28,5 +28,13 @@ my opinion, the learning curve and user experience make it an awful solution.  V
 people need the powerful features that Anki provides.  This system is very
 lightweight, easy to use, and enables people to quickly start learning.
 
-
+## Hey Buck, why so many commits? 
+Great question.  Most repositories have fewer, more meaningful commits.  If you're like me, 
+though, and you're newer to programming and git in general, then there can be benefits to
+so many small commits.  First, I have a limited amount of time every day to learn and apply
+my programming knowledge, so I may only make very small changes on a daily basis.  Second, 
+I'm learning git along the way and using it frequently helps.  Third, if you haven't read 
+The Unreasonable Effectiveness of Just Showing Up Every Day, then do so.  Or do the 
+#100DaysofCode challenge on Twitter.  
+https://news.ycombinator.com/item?id=27833064
 
