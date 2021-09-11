@@ -101,7 +101,7 @@ def test2():
 def test3():
     return render_template("test3.html")
 
-@app.route("/test4")
+@app.route("/test4", methods=['GET', 'POST'])
 def test4():
-    return render_template("test4.html") 
+    return render_template("test4.html", current_user=current_user) 
     
