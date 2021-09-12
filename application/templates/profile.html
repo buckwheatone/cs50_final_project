@@ -1,43 +1,30 @@
 {% extends "layout.html" %} 
 
-{% block main %} 
-    <img class="border border-5 border-light img-fluid rounded-pill" width="100px" src="{{ image_file }}">
-    <main class="form-signin">
-        <form method="POST" action="">
-          {{ form.hidden_tag() }}
 
-          <h1 class="h3 mb-3 fw-normal">Update account</h1>
-      
-          <div class="form-floating">
-            {% if form.email.errors %} 
-              {{ form.email(class="form-control is-invalid", placeholder="name@example.com") }}
-              {% for error in form.email.errors %} 
-                <div class="invalid-feedback">
-                  <span>{{ error }}</span>
+{% block main %} 
+<div class="container">
+<div class="row align-items-center">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+        <!-- Bg -->
+        <div class="pt-16 rounded-top-md">
+            <img src="/static/headerimg.png" alt="header image" style="max-width: 1296px">
+        </div>
+        <div class="d-flex align-items-end justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm">
+            <div class="d-flex align-items-center">
+                <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                    <img src="/static/Buckoji.jpeg" class="avatar-xl rounded-circle border border-4 border-white" alt="" style="width: 80px; height: 80px;">
                 </div>
-              {% endfor %} 
-            {% else %} 
-              {{ form.email(class="form-control", id="floatingInput", placeholder="name@example.com") }} 
-            {% endif %} 
-            {{ form.email.label(for="floatingInput") }}
-          </div>
-          <div class="form-floating">
-            {% if form.username.errors %} 
-              {{ form.username(class="form-control is-invalid", placeholder="Username") }}
-              {% for error in form.username.errors %} 
-                <div class="invalid-feedback">
-                  <span>{{ error }}</span>
+                <div class="lh-1">
+                    <h2 class="mb-0">BuckwheatOne</h2>
+                    <p class="mb-0 d-block">@buckwheatone</p>
                 </div>
-              {% endfor %} 
-            {% else %} 
-              {{ form.username(class="form-control", id="floatingInput", placeholder="Username") }} 
-            {% endif %}
-            {{ form.username.label(for="floatingInput") }}
-          </div>
-      
-          {{ form.submit(class="w-100 btn btn-lg btn-primary") }}
-      
-          <p class="mt-3 mb-3 text-muted">&copy; 2021</p>
-        </form>
-      </main>
+            </div>
+            <div>
+                <a href="dashboard" class="btn btn-outline-primary btn-sm d-none d-md-block">Go to
+                    Dashboard</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock main %} 

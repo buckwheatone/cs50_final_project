@@ -105,3 +105,6 @@ def test3():
 def test4():
     return render_template("test4.html", current_user=current_user) 
     
+@app.route("/delete", methods=['get','post'])
+def delete():
+    return render_template("delete.html") 
