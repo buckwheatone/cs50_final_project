@@ -1,0 +1,287 @@
+:root {
+    --bs-body-font-size: 0.875rem;
+    --bs-body-font-family: Lato, sans-serif; 
+}
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+    font-size: var(--bs-body-font-size);
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+/* overrides default of 3rem !important */
+.pt-5 {
+    padding-top: 2rem !important;
+}
+.pb-5 {
+    padding-bottom: 2rem !important;
+}
+
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--bs-gutter-x,.75rem);
+    padding-right: var(--bs-gutter-x,.75rem);
+}
+
+
+/* <div class="row align-items-center"> */
+/* row covered by _grid.scss BS, align covered by _util.scss */ 
+/* .align-items-center {
+    align-items: center !important;
+} */
+
+/* <div class="col-xl-12 col-lg-12 col-md-12 col-12"> */ 
+/* column stuff handled by _grid.css, some row flows into this */ 
+
+
+/* <div class="pt-16 rounded-top-md"> ... */ 
+.rounded-end-md, .rounded-top-md {
+    border-top-right-radius: 0.5rem !important;
+}
+.rounded-top-md {
+    border-top-left-radius: 0.5rem !important;
+}
+.pt-16 {
+    padding-top: 7.5rem !important;
+}
+
+
+/* <div class="d-flex align-items-end justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm> */ 
+.rounded-bottom-md, .rounded-start-md {
+    border-bottom-left-radius: 0.5rem !important;
+}
+
+.rounded-bottom-md, .rounded-end-md {
+    border-bottom-right-radius: 0.5rem !important;
+}
+
+/* _utilities covers */
+/* .bg-white {
+    --bs-bg-opacity: 1;
+    background-color: #fff !important;
+} */
+
+/* utilities covers */ 
+/* .pb-4 {
+    padding-bottom: 1.5rem !important;
+} */
+
+/* utilities covers */ 
+/* .pt-2 {
+    padding-top: 0.5rem !important;
+} */
+
+/* utilities covers */ 
+/* .px-4 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+} */
+
+/* utilities covers */ 
+/* .align-items-end {
+    align-items: flex-end !important;
+} */
+
+/* utilities covers */ 
+/* .justify-content-between {
+    justify-content: space-between !important;
+} */
+
+/* differs from utilities */ 
+/* box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important; */
+.shadow-sm {
+    box-shadow: 0 1px 3px rgba(3, 0, 71, 0.09) !important;
+}
+
+/* utilities covers */ 
+/* .d-flex {
+    display: flex !important;
+} */
+
+
+/* <div class="d-flex align-items-center"> */
+/* name and profile pic included */ 
+/* inherits .bg-white */ 
+/* all covered by utilities or grid */ 
+
+
+/* <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">  */ 
+/* profile pic */ 
+/* this is the key to positioning */ 
+.mt-n5 {
+    margin-top: -2rem !important;
+}
+
+/* utilities covers */ 
+/* .me-2 {
+    margin-right: 0.5rem !important;
+} */
+
+/* utilities covers */ 
+/* .position-relative {
+    position: relative !important;
+} */
+
+/* <img class="avatar-xl rounded-circle border border-4 border-white */
+/* profile pic itself */ 
+.avatar-xl {
+    height: 5rem;
+    width: 5rem;
+}
+
+/* utilities covers */ 
+/* .rounded-circle {
+    border-radius: 50% !important;
+} */
+
+/* utilities covers */ 
+/* .border-4 {
+    border-width: 4px !important;
+} */
+
+/* utilities covers */ 
+/* .border-white {
+    border-color: #fff !important;
+} */
+
+/* differs sligntly from utilities, but utilities covers */ 
+.border {
+    border: 1px solid #ecebf1 !important;
+        border-top-color: rgb(236, 235, 241);
+        border-top-width: 1px;
+        border-right-color: rgb(236, 235, 241);
+        border-right-width: 1px;
+        border-bottom-color: rgb(236, 235, 241);
+        border-bottom-width: 1px;
+        border-left-color: rgb(236, 235, 241);
+        border-left-width: 1px;
+}
+
+/* utilities covers */ 
+/* img, svg {
+    vertical-align: middle;
+} */
+ 
+
+
+/* <div class="lh-1"> */ 
+/* name and username */ 
+/* utilities covers */ 
+/* .lh-1 {
+    line-height: 1 !important;
+} */
+
+
+/* <h2 class="mb-0"> */ 
+/* name */
+/* utilities covers */ 
+/* .mb-0 {
+    margin-bottom: 0 !important;
+} */
+
+.h2, h2 {
+    font-size: 1.5rem;
+    /* in bs */ 
+    /* font-size: 2.0rem; */ 
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    color: #18113c;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    letter-spacing: -0.022rem;
+}
+
+
+/* <p class="mb-0 d-block"> */ 
+/* username */ 
+/* no differences from bs */ 
+
+
+/* <a class="btn btn-outline-primary btn-sm d-none d-md-block"> */ 
+/* utilities covers */ 
+/* utilities covers */ 
+.d-none {
+    display: none;
+}
+
+.d-md-block {
+    display: block;
+}
+
+
+
+.btn {
+    background-color: transparent;
+    border: 1px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    border-radius: 0.25rem;
+    color: #5c5776;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.6;
+    padding: 0.75rem 1.25rem;
+    text-align: center;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+}
+
+.btn-group-sm > .btn, .btn-sm {
+    border-radius: 0.2rem;
+    font-size: 0.765625rem;
+    padding: 0.5rem 0.875rem;
+}
+
+.btn-outline-primary {
+    border-color: #2066b4;
+    color: #2066b4;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+    .d-none {
+        display: none !important;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+
+

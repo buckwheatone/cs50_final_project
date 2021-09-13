@@ -1,8 +1,12 @@
 __pycache__/
 .DS_Store
+
+# Working Files
 application/static/spacer\ logo.png
 application/static/spacer.svg
 application/static/testsignin.css
+application/static/theme.css
+application/static/SVG\ BG\ Info.txt
 application/templates/test_layout.html
 application/templates/test.html
 application/templates/test2.html
