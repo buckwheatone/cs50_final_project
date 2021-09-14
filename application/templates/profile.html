@@ -24,7 +24,7 @@
             <div class="d-flex align-items-center">
               <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
                 <img
-                  src="../static/profile_pics/default2.png"
+                  src="{{ image_file }}"
                   class="avatar-xl rounded-circle border border-4 border-white"
                   alt=""
                   style="background-color: #fff"
@@ -45,6 +45,51 @@
           </div>
         </div>
       </div>
+
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <h1 class="h3 mb-3 mt-3 fw-normal">Update account</h1>
+        <div class="d-flex mb-3 align-items-center">
+          <h2 class="mx-2">Email: {{ current_user.email }}</h2>
+          <div class="form-floating">
+            {% if form.email.errors %} 
+              {{ form.email(class="form-control is-invalid", placeholder="name@example.com") }}
+              {% for error in form.email.errors %} 
+                <div class="invalid-feedback">
+                  <span>{{ error }}</span>
+                </div>
+              {% endfor %} 
+            {% else %} 
+              {{ form.email(class="form-control", id="floatingInput", placeholder="name@example.com") }} 
+            {% endif %} 
+            {{ form.email.label(for="floatingInput") }}
+          </div>
+        </div>
+        
+        <div class="d-flex mb-3 align-items-center">
+          <h2 class="mx-2">Username: {{ current_user.username }}</h2>
+          <div class="form-floating">
+            {% if form.username.errors %} 
+              {{ form.username(class="form-control is-invalid", placeholder="Username") }}
+              {% for error in form.username.errors %} 
+                <div class="invalid-feedback">
+                  <span>{{ error }}</span>
+                </div>
+              {% endfor %} 
+            {% else %} 
+              {{ form.username(class="form-control", placeholder="Username") }} 
+            {% endif %}
+            {{ form.username.label(for="floatingInput") }}
+          </div>
+        </div>
+    
+        {{ form.submit(class="btn btn-sm btn-outline-primary") }}
+      </form>
+
+
+
     </div>
   </div>
+
+  
 {% endblock main %} 

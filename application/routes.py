@@ -60,9 +60,13 @@ def logout():
 @login_required
 def profile():
     form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data 
+        current_user.email = form.email.data 
+        db.session.commit()
+        flash("Your account has been updated", category="success") 
+        return redirect(url_for('profile'))
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file) 
-
- 
     return render_template("profile.html", image_file=image_file, form=form)
  
 
