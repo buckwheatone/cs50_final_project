@@ -165,6 +165,9 @@ body {
         border-left-width: 1px;
 }
 
+.border-danger {
+    border: 1px solid red !important;
+}
 /* utilities covers */ 
 /* img, svg {
     vertical-align: middle;

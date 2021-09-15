@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from application import login_manager
 from application.models import User
 from flask_login import current_user
@@ -52,3 +53,10 @@ class UpdateAccountForm(FlaskForm):
             email = User.query.filter_by(email=email.data).first()
             if email:
                 raise ValidationError("Email already in use.")
+
+class UpdateProfilePic(FlaskForm):
+    profile_pic = FileField('Update Profile Pic', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
+    submit = SubmitField("Update")
+
+class DeleteAccountForm(FlaskForm):
+    pass 
