@@ -1,7 +1,7 @@
 import os
 import secrets
 from application import app, db
-from .forms import LoginForm, RegistrationForm, UpdateAccountForm, UpdateProfilePic
+from .forms import CreateCardForm, LoginForm, RegistrationForm, UpdateAccountForm, UpdateProfilePic
 from .models import User, Card
 from flask import flash, redirect, render_template, request, session, url_for
 from flask_login import login_user, logout_user, current_user, login_required
@@ -127,6 +127,13 @@ def test3():
 def test4():
     return render_template("test4.html", current_user=current_user) 
     
-@app.route("/delete", methods=['get','post'])
+@app.route("/delete", methods=['GET', 'POST'])
 def delete():
     return render_template("delete.html") 
+
+@app.route("/create-card", methods=['GET', 'POST'])
+@login_required
+def create_card():
+    #TODO: allow previous card settings to persist
+    form = CreateCardForm() 
+    return render_template("create-card.html", form=form) 

@@ -33,8 +33,13 @@ class Deck(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
     name = db.Column(db.Text, nullable=False) 
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow) 
-    card_id = db.Column(db.Integer, db.ForeignKey('card.id'), nullable=False) 
     card_count = db.Column(db.Integer, nullable=False)
+    card_id = db.Column(db.Integer, db.ForeignKey('card.id'), nullable=False) 
     
     def __repr(self):
         return f"Deck({self.name}, {self.card_count} Cards)"
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True) 
+    tag = db.Column(db.Text, nullable=False)
+    card_id = db.Column(db.Integer, db.ForeignKey('card.id'), nullable=False) 
