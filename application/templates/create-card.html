@@ -1,15 +1,34 @@
 {% extends "layout.html" %} 
 
 {% block add_head %} 
-
+<style>
+    .delete {
+        justify-content: space-between
+    }
+</style>
 {% endblock add_head %} 
 
 
 {% block main %} 
     <h1>Create Card</h1>
+    <div class="container border">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-floating">
+                <div class="d-flex delete">
+                    <p>Deck dropdown</p>
+                    <p>Dashboard Button</p>
+                </div>
+                <div>
+                    <p>Question box</p>
+                    <p>Answer box</p>
+                    <p>Tag list</p>
+                </div>
+                <div class="row justify-content-end">
+                    <button class="col-2 mb-3 btn btn-sm btn-outline-primary">+ Add</button>
+                </div>
+            </div>
 
-    <form action="" method="POST">
-        {{ form.hidden_tag() }}
-        
-    </form>
+        </form>
+    </div>
 {% endblock main %} 

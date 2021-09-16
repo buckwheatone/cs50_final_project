@@ -68,3 +68,4 @@ class CreateCardForm(FlaskForm):
     card_tags = ''
     deck_name = StringField('Question', validators=[])
     # TODO: ability to add images, files, audio, cloze, use markdown 
+    submit = SubmitField("Add")
