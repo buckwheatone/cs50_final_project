@@ -18,11 +18,12 @@ class User(db.Model, UserMixin):
 
 class Card(db.Model): 
     id = db.Column(db.Integer, primary_key=True) 
-    card_title = db.Column(db.String(100), nullable=False)
-    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    card_title = db.Column(db.String(100), nullable=False) 
     card_question = db.Column(db.Text, nullable=False) 
     card_answer = db.Column(db.Text, nullable=False) 
-    last_reviewed = db.Column(db.DateTime, nullable=False) 
+    card_tags = db.Column(db.Text, nullable=True) 
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow) 
+    last_review = db.Column(db.DateTime, nullable=False, default=datetime.utcnow) 
     next_review = db.Column(db.DateTime, nullable=False) 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
 
@@ -33,7 +34,7 @@ class Deck(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
     name = db.Column(db.Text, nullable=False) 
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow) 
-    card_count = db.Column(db.Integer, nullable=False)
+    # card_count = db.Column(db.Integer, nullable=False)
     card_id = db.Column(db.Integer, db.ForeignKey('card.id'), nullable=False) 
     
     def __repr(self):

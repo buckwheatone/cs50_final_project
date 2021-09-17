@@ -64,8 +64,8 @@ class DeleteAccountForm(FlaskForm):
 class CreateCardForm(FlaskForm): 
     card_title = StringField('Title', validators=[length(1, 300, message="Title must be under 300 characters")])
     card_question = StringField('Question', validators=[])
-    card_answer = StringField('Question', validators=[])
-    card_tags = ''
-    deck_name = StringField('Question', validators=[])
+    card_answer = StringField('Answer', validators=[])
+    card_tags = StringField('Tags', validators=[]) 
+    deck_name = StringField('Deck', validators=[])
     # TODO: ability to add images, files, audio, cloze, use markdown 
-    submit = SubmitField("Add")
+    submit = SubmitField("+ Add")

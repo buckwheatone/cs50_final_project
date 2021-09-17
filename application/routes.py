@@ -1,8 +1,9 @@
 import os
 import secrets
 from application import app, db
+from datetime import datetime 
 from .forms import CreateCardForm, LoginForm, RegistrationForm, UpdateAccountForm, UpdateProfilePic
-from .models import User, Card
+from .models import User, Card, Deck
 from flask import flash, redirect, render_template, request, session, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from PIL import Image
@@ -22,6 +23,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 @login_required
 def dashboard():
     cards = Card.query.filter_by(user_id=current_user.id)
+    print(cards)
     return render_template("dashboard.html", cards=cards)
 
 @app.route("/forgotpassword")
@@ -136,6 +138,22 @@ def delete():
 def create_card():
     #TODO: allow previous card settings to persist
     form = CreateCardForm() 
+    if form.validate_on_submit():
+        card = Card(
+            card_title=form.card_title.data,
+            card_question=form.card_question.data,
+            card_answer=form.card_answer.data,
+            card_tags=form.card_tags.data,
+            next_review=datetime.utcnow(),
+            user_id=current_user.id)
+        db.session.add(card)
+        db.session.commit()
+        deck = Deck(name=form.deck_name.data, card_id=card.id)
+        db.session.add(deck)
+        db.session.commit()
+        # TODO: logic for reloading last entry info
+        return redirect(url_for("create_card"))
+
     return render_template("create-card.html", form=form) 
 
 @app.errorhandler(403)

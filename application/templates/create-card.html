@@ -15,6 +15,73 @@
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <div class="form-floating">
+                {% if form.card_title.errors %} 
+                  {{ form.card_title(class="form-control is-invalid", placeholder="") }}
+                  {% for error in form.card_title.errors %}
+                  <div class="invalid-feedback">
+                    <span>{{ error }}</span>
+                  {% endfor %} 
+                  </div>
+                {% else %} 
+                  {{ form.card_title(class="form-control", placeholder="") }}
+                {% endif %} 
+                {{ form.card_title.label(for="floatingInput") }}
+              </div>
+            <div class="form-floating">
+                {% if form.deck_name.errors %} 
+                  {{ form.deck_name(class="form-control is-invalid", placeholder="") }}
+                  {% for error in form.deck_name.errors %}
+                  <div class="invalid-feedback">
+                    <span>{{ error }}</span>
+                  {% endfor %} 
+                  </div>
+                {% else %} 
+                  {{ form.deck_name(class="form-control", placeholder="") }}
+                {% endif %} 
+                {{ form.deck_name.label(for="floatingInput") }}
+              </div>
+              <div class="form-floating">
+                {% if form.card_question.errors %} 
+                  {{ form.card_question(class="form-control is-invalid", placeholder="") }}
+                  {% for error in form.card_question.errors %}
+                  <div class="invalid-feedback">
+                    <span>{{ error }}</span>
+                  {% endfor %} 
+                  </div>
+                {% else %} 
+                  {{ form.card_question(class="form-control", placeholder="") }}
+                {% endif %} 
+                {{ form.card_question.label(for="floatingInput") }}
+              </div>
+              <div class="form-floating">
+                {% if form.card_answer.errors %} 
+                  {{ form.card_answer(class="form-control is-invalid", placeholder="") }}
+                  {% for error in form.card_answer.errors %}
+                  <div class="invalid-feedback">
+                    <span>{{ error }}</span>
+                  {% endfor %} 
+                  </div>
+                {% else %} 
+                  {{ form.card_answer(class="form-control", placeholder="") }}
+                {% endif %} 
+                {{ form.card_answer.label(for="floatingInput") }}
+              </div>
+              <div class="form-floating">
+                {% if form.card_tags.errors %} 
+                  {{ form.card_tags(class="form-control is-invalid", placeholder="") }}
+                  {% for error in form.card_tags.errors %}
+                  <div class="invalid-feedback">
+                    <span>{{ error }}</span>
+                  {% endfor %} 
+                  </div>
+                {% else %} 
+                  {{ form.card_tags(class="form-control", placeholder="") }}
+                {% endif %} 
+                {{ form.card_tags.label(for="floatingInput") }}
+              </div>
+              {{ form.submit(class="w-100 btn btn-lg btn-primary") }}
+            
+            <!-- <div class="form-floating">
                 <div class="d-flex delete">
                     <p>Deck dropdown</p>
                     <p>Dashboard Button</p>
@@ -27,7 +94,7 @@
                 <div class="row justify-content-end">
                     <button class="col-2 mb-3 btn btn-sm btn-outline-primary">+ Add</button>
                 </div>
-            </div>
+            </div> -->
 
         </form>
     </div>
