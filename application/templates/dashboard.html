@@ -4,8 +4,10 @@
 
 {% block main %} 
 <main class="container p-2">
-    <h1 class="container">Dashboard</h1>
-
+    <div class="d-flex justify-space-between"> 
+      <h1 class="container">Dashboard</h1>
+      <a href="{{ url_for('create_card') }}"><button class="btn btn-primary">New Card</button></a>
+    </div>
     {% for card in cards %} 
     <!-- TODO: How to show one card at a time, show remaining cards after clicking answer? 
       all while ensuring speed and low memory usage? For example, what if someone had 10k 
