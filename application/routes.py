@@ -9,15 +9,6 @@ from flask_login import login_user, logout_user, current_user, login_required
 from PIL import Image
 from werkzeug.security import check_password_hash, generate_password_hash
 
-# remove later
-# cards = [
-#     {
-#         'title': 'Card 1',
-#         'tags': 'Programming',
-#         'question': 'What does import this do in the Python REPL?',
-#         'answer': 'Prints out the Zen of Python'
-#     }
-# ]
 
 @app.route("/dashboard")
 @login_required

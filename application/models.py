@@ -25,7 +25,10 @@ class Card(db.Model):
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow) 
     last_review = db.Column(db.DateTime, nullable=False, default=datetime.utcnow) 
     next_review = db.Column(db.DateTime, nullable=False) 
+    # card_archived = db.Column(db.Boolean, nullable=False, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
+    # TODO: think about card deletion...when card is deleted, tags don't get deleted
+    # nor do decks, should I add no. of cards to the tag pills? 
 
     def __repr__(self):
         return f"Card({self.card_title}-- Q:{self.card_question} A:{self.card_answer})"
@@ -33,10 +36,12 @@ class Card(db.Model):
 class Deck(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
     name = db.Column(db.Text, nullable=False) 
+    # TODO: change to deck_name
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow) 
-    # card_count = db.Column(db.Integer, nullable=False)
     card_id = db.Column(db.Integer, db.ForeignKey('card.id'), nullable=False) 
-    
+    # public_deck = db.Column(db.Boolean, nullalbe=False, default=False)
+    # deck_archived = db.Column(db.Boolean, nullable=False, default=False)
+
     def __repr(self):
         return f"Deck({self.name}, {self.card_count} Cards)"
 
