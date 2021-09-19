@@ -14,7 +14,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 @login_required
 def dashboard():
     cards = Card.query.filter_by(user_id=current_user.id)
-    print(cards)
     return render_template("dashboard.html", cards=cards)
 
 @app.route("/forgotpassword")
@@ -33,12 +32,14 @@ def login():
         return redirect(url_for('dashboard'))
 
     form = LoginForm() 
-    if request.method == 'POST' and form.validate_on_submit():
+    if form.validate_on_submit():
         # TODO: session data, checking username availability
         hashed_pass = generate_password_hash(form.password.data)
         user = User.query.filter_by(email=form.email.data).first()
         if user and check_password_hash(hashed_pass, form.password.data): 
             login_user(user, remember=form.remember.data)
+            print('Remember me:', form.remember.data)
+            session['keep_last_card'] = False
             next_page = request.args.get('next') 
             flash("Logged in!", category='success') 
             return redirect(next_page) if next_page else redirect(url_for('dashboard')) 
@@ -127,23 +128,36 @@ def delete():
 @app.route("/create-card", methods=['GET', 'POST'])
 @login_required
 def create_card():
-    #TODO: allow previous card settings to persist
-    form = CreateCardForm() 
+    if session['keep_last_card'] == True:
+        form = CreateCardForm(
+            deck_name=session['deck_name'],
+            card_tags=session['card_tags'],
+            keep_last_card=True)
+    else:
+        form = CreateCardForm() 
+    
     if form.validate_on_submit():
         card = Card(
             card_title=form.card_title.data,
             card_question=form.card_question.data,
             card_answer=form.card_answer.data,
             card_tags=form.card_tags.data,
+            # TODO: update next_review to algorithm
             next_review=datetime.utcnow(),
             user_id=current_user.id)
+        print('Keep last card:', form.keep_last_card.data)
+        if form.keep_last_card.data == True:
+            session['keep_last_card'] = True
+            session['deck_name'] = form.deck_name.data
+            session['card_tags'] = form.card_tags.data
+        else:
+            session['keep_last_card'] = False
         db.session.add(card)
         db.session.commit()
         deck = Deck(name=form.deck_name.data, card_id=card.id)
         db.session.add(deck)
         db.session.commit()
-        # TODO: logic for reloading last entry info
-        return redirect(url_for("create_card"))
+        return redirect(url_for('create_card'))
 
     return render_template("create-card.html", form=form) 
 

@@ -79,22 +79,12 @@
                 {% endif %} 
                 {{ form.card_tags.label(for="floatingInput") }}
               </div>
+              <div class="checkbox mb-3">
+                <label>
+                  {{ form.keep_last_card(type="checkbox", value="keep-last-card") }} {{ form.keep_last_card.label }}
+                </label>
+              </div>
               {{ form.submit(class="w-100 btn btn-lg btn-primary") }}
-            
-            <!-- <div class="form-floating">
-                <div class="d-flex delete">
-                    <p>Deck dropdown</p>
-                    <p>Dashboard Button</p>
-                </div>
-                <div>
-                    <p>Question box</p>
-                    <p>Answer box</p>
-                    <p>Tag list</p>
-                </div>
-                <div class="row justify-content-end">
-                    <button class="col-2 mb-3 btn btn-sm btn-outline-primary">+ Add</button>
-                </div>
-            </div> -->
 
         </form>
     </div>

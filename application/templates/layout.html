@@ -44,6 +44,7 @@
                     <a href="{{ url_for('logout') }}"><button class="btn btn-primary-outline" type="submit">Log out</button></a>
                 </div>
                 {% else %}
+                <div class="navbar-nav me-auto mb-2"></div>
                 <div class="d-flex">
                   <a href="{{ url_for('register') }}"><button class="btn btn-primary" type="submit">Register</button></a>
                   <a href="{{ url_for('login') }}"><button class="btn btn-outline-primary" type="submit">Log In</button></a>

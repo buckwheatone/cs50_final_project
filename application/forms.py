@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
+from wtforms.widgets.core import CheckboxInput
 from application import login_manager
 from application.models import User
 from flask_login import current_user
@@ -67,5 +68,6 @@ class CreateCardForm(FlaskForm):
     card_answer = StringField('Answer', validators=[])
     card_tags = StringField('Tags', validators=[]) 
     deck_name = StringField('Deck', validators=[])
+    keep_last_card = BooleanField('Keep Last Card Settings')    
     # TODO: ability to add images, files, audio, cloze, use markdown 
     submit = SubmitField("+ Add")
