@@ -1,5 +1,11 @@
 # CS50 Final Project
 
+## Before you clone...this project is INCOMPLETE
+My intention with this repository was to document my progress on my CS50 final 
+project, but have noticed some clones coming through.  In order to avoid violating
+the CS50 code of conduct, I'll be pausing any updates to this repository until I've
+finished and submitted it.  Keep an eye out for updates soon! 
+
 ## What is CS50?
 CS50 is an introductory Computer Science class offered by Harvard.  The curriculum
 covers a wide range of relevant computer science topics and is a great place to start 
