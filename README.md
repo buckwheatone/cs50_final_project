@@ -41,6 +41,16 @@ lightweight, easy to use, and allows you to quickly start learning.
 - In a browser, navigate to the localhost address "127.0.0.1:500" and you should see the app's landing page
 - TODO: YT link 
 
+## Features: 
+- IN PROGRESS: Functionality to add, delete, archive cards
+- IN PROGRESS: "Remember last card" information when entering multiple cards
+- IN PROGRESS: Add tags to cards for easy organization and specific studying
+- IN PROGRESS: Form decks that contain card sets
+- IN PROGRESS: Assess each card review as easy, so-so, difficult which then informs algorithm
+- TO DO: Simple algorithm to tell you when to review certain cards
+- TO DO: Public / private decks so you can share with others
+
+
 ## Hey Buck, why so many commits? 
 Great question.  Most repositories have fewer, more meaningful commits.  If you're like me, 
 though, and you're newer to programming and git in general, then there can be benefits to
@@ -51,5 +61,5 @@ I'm learning git along the way and using it frequently helps.  Third, if you hav
 already: "People overestimate what they can do in [a short timeframe] and underestimate 
 what they can do [over the long-term]."
 
-Enjoy the app!
+Enjoy the app and send any feedback to me on Twitter!
 - BW
